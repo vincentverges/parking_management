@@ -58,5 +58,6 @@ jobs:
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: |
+          echo $HEROKU_API_KEY | heroku auth:token
           heroku git:remote -a parking-management-datal
           git push heroku main
