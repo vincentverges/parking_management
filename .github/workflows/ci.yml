@@ -54,10 +54,14 @@ jobs:
       - name: Run tests
         run: |
           python manage.py test
-      - name: Deploy to Heroku
+
+      - name: Install Heroku CLI
+        run: curl https://cli-assets.heroku.com/install.sh | sh
+
+      - name: Deploy to Heroku using API
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: |
-          echo $HEROKU_API_KEY | heroku auth:token
-          heroku git:remote -a parking-management-datal
+          heroku auth:token
+          git remote add heroku https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/parking-management-datal.git
           git push heroku main
