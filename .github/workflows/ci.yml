@@ -54,10 +54,3 @@ jobs:
       - name: Run tests
         run: |
           python manage.py test
-
-      - name: Deploy to Heroku
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: |
-          heroku git:remote -a your-heroku-app-name
-          git push heroku main
