@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
+import dj_database_url
 import os
 from pathlib import Path
 
@@ -28,8 +29,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
+    'parking-management-datal-c6daa888e999.herokuapp.com',
     '0.0.0.0',
-    'parking-management-datal-c6daa888e999.herokuapp.com'
 ]
 
 
@@ -82,14 +83,10 @@ WSGI_APPLICATION = 'parking_management.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSTGRES_DB','parking_db'),
-        'USER': os.getenv('POSTGRES_USER','postgres'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD','postgres'),
-        'HOST': os.getenv('POSTGRES_HOST','localhost'),
-        'PORT': os.getenv('POSTGRES_PORT','5432'),
-    }
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL')
+    )
+
 }
 
 
