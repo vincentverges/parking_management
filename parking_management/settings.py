@@ -28,7 +28,6 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'parking-management-datal-c6daa888e999.herokuapp.com',
     '0.0.0.0',
 ]
 
