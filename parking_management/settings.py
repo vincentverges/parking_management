@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-import dj_database_url
 import os
 from pathlib import Path
 
@@ -83,14 +82,14 @@ WSGI_APPLICATION = 'parking_management.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=f"postgres://{os.getenv('POSTGRES_USER', 'postgres')}:"
-                f"{os.getenv('POSTGRES_PASSWORD', 'postgres')}@"
-                f"{os.getenv('POSTGRES_HOST', 'localhost')}:"
-                f"{os.getenv('POSTGRES_PORT', '5432')}/"
-                f"{os.getenv('POSTGRES_DB', 'parking_db')}"
-    )
-
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'parking_db',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'db',
+        'PORT': '5432',
+    }
 }
 
 
