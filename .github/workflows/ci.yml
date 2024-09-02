@@ -41,6 +41,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Wait for DB to be ready
+        run: |
+            until pg_isready -h localhost -p 5432 -U postgres -d parking_db; do
+              sleep 5
+            done
+
       - name: Run migrations
         env:
           POSTGRES_HOST: localhost

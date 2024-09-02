@@ -12,7 +12,7 @@ services:
 
   web:
     build: .
-    command: ["sh", "-c", "sleep 20 && python manage.py runserver 0.0.0.0:8000"]
+    command: ["sh", "-c", "sleep 10 && python manage.py runserver 0.0.0.0:8000"]
     volumes:
       - .:/app
     ports:
@@ -23,7 +23,7 @@ services:
       POSTGRES_DB: parking_db
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_HOST: db
+      POSTGRES_HOST: localhost
       POSTGRES_PORT: 5432
 
 volumes:
