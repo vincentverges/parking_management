@@ -25,7 +25,12 @@ SECRET_KEY = 'django-insecure-+*x&&#un%8nf8j=84=zi_&2fljh1&+bo^n_@tbnfqro)5^uzl8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '0.0.0.0',
+    'parking-management-datal-c6daa888e999.herokuapp.com'
+]
 
 
 # Application definition
