@@ -31,6 +31,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Build and start Docker Compose services
+        run: |
+          docker compose up -d --build
+          sleep 10
+
       - name: Wait for DB to be ready
         run: |
           until docker compose exec db pg_isready -U postgres -d parking_db; do
