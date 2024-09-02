@@ -84,7 +84,11 @@ WSGI_APPLICATION = 'parking_management.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL')
+        default=f"postgres://{os.getenv('POSTGRES_USER', 'postgres')}:"
+                f"{os.getenv('POSTGRES_PASSWORD', 'postgres')}@"
+                f"{os.getenv('POSTGRES_HOST', 'localhost')}:"
+                f"{os.getenv('POSTGRES_PORT', '5432')}/"
+                f"{os.getenv('POSTGRES_DB', 'parking_db')}"
     )
 
 }

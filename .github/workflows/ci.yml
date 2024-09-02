@@ -31,7 +31,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          fetch-depth: 0  # Cloner tout le dépôt pour éviter les shallow clones
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -43,13 +43,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Set DATABASE_URL environment variable
+        run: echo "DATABASE_URL=postgres://postgres:postgres@localhost:5432/parking_db" >> $GITHUB_ENV
+
       - name: Run migrations
-        env:
-          POSTGRES_HOST: localhost
-          POSTGRES_PORT: 5432
-          POSTGRES_DB: parking_db
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
         run: |
           python manage.py migrate
 
