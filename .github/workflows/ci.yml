@@ -46,6 +46,13 @@ jobs:
       - name: Set DATABASE_URL environment variable
         run: echo "DATABASE_URL=postgres://postgres:postgres@localhost:5432/parking_db" >> $GITHUB_ENV
 
+      - name: Wait for PostgreSQL
+        run: |
+          until pg_isready -h localhost -p 5432 -U postgres; do
+            echo "$(date) - waiting for database to be ready"
+            sleep 2
+          done
+
       - name: Run migrations
         run: |
           python manage.py migrate
