@@ -15,9 +15,9 @@ class ParkingSpotTestCase(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 5)
 
-    def test_get_ticket(self):
+    def test_create_ticket(self):
         """Test pour obtenir un ticket pour une place disponible"""
-        response = self.client.post('/api/spot/get_ticket/')
+        response = self.client.post('/api/spot/create_ticket/')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         ticket = ParkingTicket.objects.get(id=response.data['ticket']['id'])
         self.assertTrue(ticket.spot.is_occupied)
