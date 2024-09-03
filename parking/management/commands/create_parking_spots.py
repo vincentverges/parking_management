@@ -1,6 +1,7 @@
 import random
 from django.core.management.base import BaseCommand
-from parking.models import ParkingSpot
+from parking.models import ParkingSpot, ParkingTicket
+
 
 class Command(BaseCommand):
     help = 'Create a specified number of parking spots with random occupancy status'
@@ -19,5 +20,8 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.SUCCESS(f'Parking spot {i} created with status {"occupied" if is_occupied else "free"}'))
             else:
                 self.stdout.write(self.style.WARNING(f'Parking spot {i} already exists'))
+
+            if is_occupied:
+                ParkingTicket.objects.create(spot=spot)
 
         self.stdout.write(self.style.SUCCESS(f'Successfully created {number_of_spots} parking spots with random occupancy status.'))

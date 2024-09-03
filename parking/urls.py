@@ -3,8 +3,8 @@ from rest_framework.routers import DefaultRouter
 from .views import ParkingSpotViewSet
 
 router = DefaultRouter()
-router.register(r'spot', ParkingSpotViewSet)
+router.register(r'spot', ParkingSpotViewSet, basename='spot')
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('api/', include(router.urls)),
 ]

@@ -14,7 +14,7 @@ class ParkingSpotViewSet(viewsets.ModelViewSet):
 
     # Feature 1 : Get a parking's ticket with spot number
     @action(detail=False, methods=['POST'])
-    def get_ticket(self,request):
+    def create_ticket(self,request):
         available_spot = ParkingSpot.objects.filter(is_occupied=False).first()
         if not available_spot:
             return Response({"error": "Aucune place disponible"},status=status.HTTP_404_NOT_FOUND)
